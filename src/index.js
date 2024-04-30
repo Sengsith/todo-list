@@ -1,15 +1,9 @@
 import "./index.css";
 
-import todoFactory from "./todo/todo";
+import todoFactory from "./todo/todoFactory";
+import todosHandler from "./todo/todosHandler";
+import modalHandler from "./modal/modalHandler";
 
-const intializeHome = (() => {
+const intialize = (() => {
   const content = document.querySelector("#content");
-
-  const heading = document.createElement("h1");
-  heading.textContent = "Todo bozo";
-
-  const testTodo = todoFactory("Test");
-  console.log(`Name: ${testTodo.getTaskName()}, Completed: ${testTodo.isCompleted()}`);
-
-  content.appendChild(heading);
 })();

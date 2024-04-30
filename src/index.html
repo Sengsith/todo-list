@@ -6,7 +6,16 @@
     <title>Todo List</title>
   </head>
   <body>
-    <header></header>
+    <h1>Todo List</h1>
+    <button id="open-modal-btn">Add New Task</button>
+    <dialog data-modal>
+      <form method="dialog">
+        <label for="form-name">Task Name</label>
+        <input type="text" name="form-name" id="form-name" autocomplete="off" />
+        <button id="submit">Add Task</button>
+        <button id="close-modal-btn">Cancel</button>
+      </form>
+    </dialog>
     <div id="content"></div>
   </body>
 </html>
