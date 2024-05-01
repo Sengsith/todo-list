@@ -5,7 +5,9 @@ const todosHandler = (() => {
 
   const addTodo = (todo) => todos.push(todo);
 
-  return { getTodos, addTodo };
+  const removeTodo = (index) => todos.splice(index, 1);
+
+  return { getTodos, addTodo, removeTodo };
 })();
 
 export default todosHandler;

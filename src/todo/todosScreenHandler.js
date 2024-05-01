@@ -1,6 +1,9 @@
 import todosHandler from "./todosHandler";
 
 const todosScreenHandler = (() => {
+  const COMPLETE_BTN_CLASSNAME = "complete-btn";
+  const CLEAR_BTN_CLASSNAME = "clear-btn";
+
   const updateTodosScreen = () => {
     const content = document.querySelector("#content");
     content.textContent = "";
@@ -18,13 +21,15 @@ const todosScreenHandler = (() => {
     todosContainer.appendChild(completeTodos);
 
     todosContainer.addEventListener("click", (e) => {
-      if (e.target.classList.contains("completed-btn")) {
+      const id = e.target.parentNode.id.split("-");
+      const index = parseInt(id[id.length - 1]);
+      if (e.target.classList.contains(COMPLETE_BTN_CLASSNAME)) {
         e.target.parentNode.classList.toggle("completed");
 
-        const id = e.target.parentNode.id.split("-");
-        const index = parseInt(id[id.length - 1]);
-
         todosHandler.getTodos()[index].toggleCompleted();
+        updateTodosScreen();
+      } else if (e.target.classList.contains(CLEAR_BTN_CLASSNAME)) {
+        todosHandler.removeTodo(index);
         updateTodosScreen();
       }
     });
@@ -45,9 +50,14 @@ const todosScreenHandler = (() => {
       newTask.appendChild(isCompleted);
 
       const completed = document.createElement("button");
-      completed.classList.add("completed-btn");
-      completed.textContent = "Complete";
+      completed.classList.add(COMPLETE_BTN_CLASSNAME);
+      completed.textContent = todo.isCompleted() ? "Incomplete" : "Complete";
       newTask.appendChild(completed);
+
+      const clear = document.createElement("button");
+      clear.classList.add(CLEAR_BTN_CLASSNAME);
+      clear.textContent = "Clear";
+      newTask.appendChild(clear);
 
       if (todo.isCompleted()) completeTodos.appendChild(newTask);
       else incompleteTodos.appendChild(newTask);
