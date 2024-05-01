@@ -1,5 +1,6 @@
 import todoFactory from "../todo/todoFactory";
 import todosHandler from "../todo/todosHandler";
+import todosScreenHandler from "../todo/todosScreenHandler";
 
 const modalHandler = (() => {
   const openModalBtn = document.querySelector("#open-modal-btn");
@@ -17,7 +18,7 @@ const modalHandler = (() => {
   submit.addEventListener("click", (e) => {
     e.preventDefault();
     todosHandler.addTodo(todoFactory(newTaskName.value));
-    todosHandler.updateTodosScreen();
+    todosScreenHandler.updateTodosScreen();
     document.querySelector("form").reset();
     modal.close();
   });
