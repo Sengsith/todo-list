@@ -11,3 +11,11 @@ const todosHandler = (() => {
 })();
 
 export default todosHandler;
+
+// Create a project factory
+// what if we just change todosHandler into projectFactory
+// project name
+// still has todos array
+// still give todos
+// still add todo
+// still remove todo
