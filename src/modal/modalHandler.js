@@ -1,26 +1,46 @@
 import todoFactory from "../todo/todoFactory";
-import todosHandler from "../todo/todosHandler";
+import projectFactory from "../project/projectFactory";
+import projectHandler from "../project/projectHandler";
 import todosScreenHandler from "../todo/todosScreenHandler";
 
 const modalHandler = (() => {
-  const openModalBtn = document.querySelector("#open-modal-btn");
-  const closeModalBtn = document.querySelector("#close-modal-btn");
-  const modal = document.querySelector("[data-modal]");
-  const submit = document.querySelector("#submit");
-  const newTaskName = document.querySelector("#form-name");
+  const openTodoModal = document.querySelector("#open-todo-modal");
+  const closeTodoModal = document.querySelector("#close-todo-modal");
+  const todoModal = document.querySelector("[data-todo]");
+  const todoSubmit = document.querySelector("#todo-submit");
+  const todoName = document.querySelector("#todo-name");
 
-  openModalBtn.addEventListener("click", () => {
-    modal.showModal();
+  openTodoModal.addEventListener("click", () => {
+    todoModal.showModal();
   });
-  closeModalBtn.addEventListener("click", () => {
-    modal.close();
+  closeTodoModal.addEventListener("click", () => {
+    todoModal.close();
   });
-  submit.addEventListener("click", (e) => {
+  todoSubmit.addEventListener("click", (e) => {
     e.preventDefault();
-    todosHandler.addTodo(todoFactory(newTaskName.value));
-    todosScreenHandler.updateTodosScreen();
-    document.querySelector("form").reset();
-    modal.close();
+    // TODO: Fix whenever we are done with project implementation
+    document.querySelector("#todo-form").reset();
+    todoModal.close();
+  });
+
+  const openProjectModal = document.querySelector("#open-project-modal");
+  const closeProjectModal = document.querySelector("#close-project-modal");
+  const projectModal = document.querySelector("[data-project]");
+  const projectSubmit = document.querySelector("#project-submit");
+  const projectName = document.querySelector("#project-name");
+
+  openProjectModal.addEventListener("click", () => {
+    projectModal.showModal();
+  });
+  closeProjectModal.addEventListener("click", () => {
+    projectModal.close();
+  });
+  projectSubmit.addEventListener("click", (e) => {
+    e.preventDefault();
+    const newProject = projectFactory(projectName.value);
+    projectHandler.addProject(newProject);
+    document.querySelector("#project-form").reset();
+    projectModal.close();
   });
 })();
 

@@ -1,5 +1,3 @@
-import todosHandler from "./todosHandler";
-
 const todosScreenHandler = (() => {
   const COMPLETE_BTN_CLASSNAME = "complete-btn";
   const CLEAR_BTN_CLASSNAME = "clear-btn";
