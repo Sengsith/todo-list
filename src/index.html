@@ -7,7 +7,40 @@
   </head>
   <body>
     <h1>Todo List</h1>
-    <div id="project-dialog"></div>
+    <button class="open-project-modal">Add New Project</button>
+    <button class="open-todo-modal">Add New Todo</button>
+    <dialog data-modal>
+      <form method="modal">
+        <label for="name" id="label-name">Project Name</label>
+        <input
+          type="text"
+          name="name"
+          id="input-name"
+          autocomplete="off"
+          placeholder="Name"
+          required
+        />
+        <label for="desc" id="label-desc">Project Desc</label>
+        <input
+          type="text"
+          name="desc"
+          id="input-desc"
+          autocomplete="off"
+          placeholder="Description"
+          required
+        />
+        <label for="date" id="label-date">Due Date</label>
+        <input type="date" name="date" id="input-date" autocomplete="off" required />
+        <label for="priority" id="label-priority">Priority</label>
+        <select name="priority" id="select-priority">
+          <option value="low">Low</option>
+          <option value="med">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <button id="submit">Add Project</button>
+        <button id="close-modal">Cancel</button>
+      </form>
+    </dialog>
     <div id="content"></div>
   </body>
 </html>

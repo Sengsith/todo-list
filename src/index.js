@@ -2,7 +2,7 @@ import "./index.css";
 import PRIORITY from "./PRIORITY_ENUM";
 import Project from "./project/Project";
 import collectionHandler from "./collectionHandler";
-import modalHandler from "./modal/modalUIHandler";
+import "./modal/modalUIHandler";
 import { format, add } from "date-fns";
 
 const projectsHandler = collectionHandler();
