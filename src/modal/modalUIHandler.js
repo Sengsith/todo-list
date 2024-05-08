@@ -1,7 +1,7 @@
 import PRIORITY_ENUM from "../PRIORITY_ENUM";
 
 const modalUIHandler = (() => {
-  const content = document.querySelector("#content");
+  const projectDialog = document.querySelector("#project-dialog");
 
   // type: tells us whether it's project or todo element
   // action: open or close modal
@@ -9,15 +9,15 @@ const modalUIHandler = (() => {
     const button = document.createElement("button");
     button.classList.add(`modal-${type}-${action}`);
     button.textContent = action === "open" ? `Add new ${type}` : "Cancel";
-    content.appendChild(button);
+    return button;
   };
 
   const createDialog = (type) => {
     const dialog = document.createElement("dialog");
     dialog.dataset[type] = "";
     dialog.id = `dialog-${type}`;
-    content.appendChild(dialog);
     dialog.appendChild(createForm(type));
+    return dialog;
   };
 
   const createForm = (type) => {
@@ -28,31 +28,30 @@ const modalUIHandler = (() => {
 
     // Name
     const NAME = "name";
-    const nameLabel = createLabel(type, NAME);
-    form.appendChild(nameLabel);
-    const nameInput = createInput(type, NAME, "text");
-    form.appendChild(nameInput);
+    form.appendChild(createLabel(type, NAME));
+    form.appendChild(createInput(type, NAME, "text"));
 
     // Description
     const DESCRIPTION = "description";
-    const descLabel = createLabel(type, DESCRIPTION);
-    form.appendChild(descLabel);
-    const descInput = createInput(type, DESCRIPTION, "text");
-    form.appendChild(descInput);
+    form.appendChild(createLabel(type, DESCRIPTION));
+    form.appendChild(createInput(type, DESCRIPTION, "text"));
 
     // Date
     const DATE = "date";
-    const dateLabel = createLabel(type, DATE);
-    form.appendChild(dateLabel);
-    const dateInput = createInput(type, DATE, "date");
-    form.appendChild(dateInput);
+    form.appendChild(createLabel(type, DATE));
+    form.appendChild(createInput(type, DATE, "date"));
 
     // Priority
     const PRIORITY = "priority";
-    const prioLabel = createLabel(type, PRIORITY);
-    form.appendChild(prioLabel);
-    const prioSelect = createSelect(type, PRIORITY);
-    form.appendChild(prioSelect);
+    form.appendChild(createLabel(type, PRIORITY));
+    form.appendChild(createSelect(type, PRIORITY));
+
+    // Submit
+    form.appendChild(createSubmitButton(type));
+
+    // Close Modal
+    form.appendChild(createModalButton(type, "close"));
+
     return form;
   };
 
@@ -87,15 +86,28 @@ const modalUIHandler = (() => {
     return select;
   };
 
-  //TODO: Create the submit and close-modal buttons for our form
+  const createSubmitButton = (type) => {
+    const button = document.createElement("button");
+    button.classList.add(`submit-${type}`);
+    button.textContent = `Add ${type}`;
+    return button;
+  };
 
   const createProjectDialog = () => {
     const PROJECT = "project";
-    createModalButton(PROJECT, "open");
-    createDialog(PROJECT);
+    projectDialog.appendChild(createModalButton(PROJECT, "open"));
+    projectDialog.appendChild(createDialog(PROJECT));
+  };
+
+  const createTodoDialog = (parentNode) => {
+    const TODO = "todo";
+    parentNode.appendChild(createModalButton(TODO, "open"));
+    parentNode.appendChild(createDialog(TODO));
   };
 
   createProjectDialog();
+
+  return { createTodoDialog };
 })();
 
 export default modalUIHandler;
