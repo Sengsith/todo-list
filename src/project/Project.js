@@ -1,10 +1,9 @@
 import Todo from "../todo/Todo";
-import collectionHandler from "../collectionHandler";
 
 class Project extends Todo {
   constructor(name, description, priority, dueDate) {
     super(name, description, priority, dueDate);
-    this.todos = collectionHandler();
+    this.todos = [];
   }
 
   getTodos = function () {
@@ -12,7 +11,7 @@ class Project extends Todo {
   };
 
   addTodo = function (todo) {
-    this.todos.addTodo(todo);
+    this.todos.push(todo);
   };
 }
 

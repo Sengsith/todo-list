@@ -20,7 +20,7 @@ const modalUIHandler = (() => {
     openModal("Project");
   });
 
-  openTodoModal.addEventListener("click", () => {
+  openTodoModal?.addEventListener("click", () => {
     openModal("Todo");
   });
 

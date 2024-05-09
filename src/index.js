@@ -1,11 +1,11 @@
 import "./index.css";
 import PRIORITY from "./PRIORITY_ENUM";
 import Project from "./project/Project";
-import collectionHandler from "./collectionHandler";
-import "./modal/modalUIHandler";
 import { format, add } from "date-fns";
+import projectsHandler from "./project/projectsHandler";
+import "./modal/modalHandler";
+import "./modal/modalUIHandler";
 
-const projectsHandler = collectionHandler();
 const sampleProject = new Project(
   "Sample Project",
   "This is a sample project that has been created for you!",
@@ -13,8 +13,7 @@ const sampleProject = new Project(
   format(add(new Date(), { months: 6 }), "MM/dd/yyyy")
 );
 projectsHandler.addItem(sampleProject);
-
-console.log(projectsHandler.getCollection());
+console.log(projectsHandler.getProjects());
 
 //  Project Modal Factory IIFE
 //    projectName query
