@@ -1,6 +1,7 @@
 import Project from "../project/Project";
 import { format } from "date-fns";
 import projectsHandler from "../project/projectsHandler";
+import projectsUIHandler from "../project/projectsUIHandler";
 
 const modalHandler = (() => {
   const form = document.querySelector("form");
@@ -19,6 +20,7 @@ const modalHandler = (() => {
       format(dueDate.value, "MM/dd/yyyy")
     );
     projectsHandler.addItem(newProject);
+    projectsUIHandler.updateProjectsUI();
     modal.close();
     console.log(projectsHandler.getProjects());
   });

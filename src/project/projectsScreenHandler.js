@@ -1,3 +1,0 @@
-const projectsScreenHandler = (() => {
-  const updateProjectsScreen = () => {};
-})();

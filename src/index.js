@@ -3,6 +3,7 @@ import PRIORITY from "./PRIORITY_ENUM";
 import Project from "./project/Project";
 import { format, add } from "date-fns";
 import projectsHandler from "./project/projectsHandler";
+import projectsUIHandler from "./project/projectsUIHandler";
 import "./modal/modalHandler";
 import "./modal/modalUIHandler";
 
@@ -13,6 +14,7 @@ const sampleProject = new Project(
   format(add(new Date(), { months: 6 }), "MM/dd/yyyy")
 );
 projectsHandler.addItem(sampleProject);
+projectsUIHandler.updateProjectsUI();
 console.log(projectsHandler.getProjects());
 
 //  Project Modal Factory IIFE
