@@ -30,6 +30,20 @@ const projectsUIHandler = (() => {
       project.getTodos().forEach((todo) => {
         createElements("todo", todo, todoContainer);
       });
+
+      // Toggle extra todo details
+      todoContainer.addEventListener("click", () => {
+        // Toggle display for ".todo-description" and "todo-date-created"
+        const todoDescription = todoContainer.getElementsByTagName("p")[1];
+        const todoDateCreated = todoContainer.getElementsByTagName("p")[2];
+        if (todoDescription.style.display === "none") {
+          todoDescription.style.display = "block";
+          todoDateCreated.style.display = "block";
+        } else {
+          todoDescription.style.display = "none";
+          todoDateCreated.style.display = "none";
+        }
+      });
     });
   };
 
