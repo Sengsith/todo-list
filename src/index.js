@@ -1,5 +1,6 @@
 import "./index.css";
 import PRIORITY from "./PRIORITY_ENUM";
+import Todo from "./todo/Todo";
 import Project from "./project/Project";
 import { format, add } from "date-fns";
 import projectsHandler from "./project/projectsHandler";
@@ -13,9 +14,16 @@ const sampleProject = new Project(
   PRIORITY.LOW,
   format(add(new Date(), { months: 6 }), "MM/dd/yyyy")
 );
-projectsHandler.addItem(sampleProject);
-projectsUIHandler.updateProjectsUI();
+projectsHandler.addProject(sampleProject);
 console.log(projectsHandler.getProjects());
+const sampleTodo = new Todo(
+  "Sample Todo",
+  "This is a sample todo that has been created for you!",
+  PRIORITY.LOW,
+  format(add(new Date(), { months: 6 }), "MM/dd/yyyy")
+);
+sampleProject.addTodo(sampleTodo);
+projectsUIHandler.updateProjectsUI();
 
 //  Project Modal Factory IIFE
 //    projectName query

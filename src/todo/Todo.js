@@ -1,5 +1,7 @@
 import { format } from "date-fns";
 
+import "./todo.css";
+
 class Todo {
   constructor(name, description, priority, dueDate) {
     this.name = name;
